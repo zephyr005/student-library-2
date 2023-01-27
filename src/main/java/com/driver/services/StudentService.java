@@ -33,6 +33,7 @@ public class StudentService {
     }
 
     public void updateStudent(Student student){
+
         studentRepository.updateStudentDetails(student);
     }
 
