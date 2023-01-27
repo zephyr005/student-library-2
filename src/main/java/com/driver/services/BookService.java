@@ -32,7 +32,7 @@ public class BookService {
         author.getBooksWritten().add(book);
 
         //Updated the book
-        book.setAuthor(author);
+       // book.setAuthor(author);
         //bookRepository2.save(book);
         bookRepository2.save(book);
 
