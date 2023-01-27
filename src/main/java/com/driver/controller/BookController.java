@@ -1,6 +1,5 @@
 package com.driver.controller;
 
-import com.driver.models.Author;
 import com.driver.models.Book;
 import com.driver.models.Genre;
 import com.driver.services.BookService;
@@ -26,7 +25,7 @@ public class BookController {
 
 
     @GetMapping("/")
-    public ResponseEntity getBooks(@RequestParam(value = "Genre", required = false) Genre genre,
+    public ResponseEntity getBooks(@RequestParam(value = "genre", required = false) Genre genre,
                                    @RequestParam(value = "available", required = false, defaultValue = "false") boolean available,
                                    @RequestParam(value = "author", required = false) String author){
 
