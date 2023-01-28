@@ -37,9 +37,9 @@ public class BookService {
         }
         author.setBooksWritten(booksWritten);
         book.setAuthor(author);
-        bookRepository2.save(book);
+//        bookRepository2.save(book);
 
-//        authorRepository1.save(author);
+        authorRepository1.save(author);
 
 
 
