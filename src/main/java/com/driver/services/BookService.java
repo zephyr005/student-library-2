@@ -8,6 +8,7 @@ import com.driver.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,19 +23,20 @@ public class BookService {
     public void createBook(Book book){
 
 
-        //Save the author in book
+
 
         int authorId = book.getAuthor().getId();
 
         Author author =  authorRepository1.findById(authorId).get();
-
-        //Update the bookList written by Author
-        author.getBooksWritten().add(book);
-
-        //Updated the book
+        List<Book> booksWritten = author.getBooksWritten();
+        if(booksWritten==null){
+            booksWritten = new ArrayList<>();
+            booksWritten.add(book);
+        }else{
+            booksWritten.add(book);
+        }
         book.setAuthor(author);
-        //bookRepository2.save(book);
-        bookRepository2.save(book);
+//        bookRepository2.save(book);
 
         authorRepository1.save(author);
 
