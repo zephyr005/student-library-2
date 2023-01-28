@@ -25,21 +25,39 @@ public class BookService {
 
 
 
-        int authorId = book.getAuthor().getId();
+//        int authorId = book.getAuthor().getId();
+//
+//        Author author =  authorRepository1.findById(authorId).get();
+//        List<Book> booksWritten = author.getBooksWritten();
+//        if(booksWritten==null){
+//            booksWritten = new ArrayList<>();
+//            booksWritten.add(book);
+//        }else{
+//            booksWritten.add(book);
+//        }
+//        author.setBooksWritten(booksWritten);
+//        book.setAuthor(author);
+////        bookRepository2.save(book);
+//
+//        authorRepository1.save(author);
 
-        Author author =  authorRepository1.findById(authorId).get();
-        List<Book> booksWritten = author.getBooksWritten();
-        if(booksWritten==null){
-            booksWritten = new ArrayList<>();
-            booksWritten.add(book);
-        }else{
-            booksWritten.add(book);
+        try {
+            int id = book.getAuthor().getId();
+            Author author = authorRepository1.findById(id).get();
+            List<Book> bookList = author.getBooksWritten();
+            if(bookList==null) {
+                bookList = new ArrayList<>();
+            }
+            bookList.add(book);
+            book.setAuthor(author);
+            author.setBooksWritten(bookList);
+            authorRepository1.save(author);
+
         }
-        author.setBooksWritten(booksWritten);
-        book.setAuthor(author);
-//        bookRepository2.save(book);
+        catch (Exception e) {
 
-        authorRepository1.save(author);
+            bookRepository2.save(book);
+        }
 
 
 
